@@ -1,0 +1,16 @@
+<style>
+.w-slider-dot {
+  height: 14px;
+  background: #C5C5C5;
+  top: 3px;
+}
+.w-slider-dot.w-active {
+  height: 14px;
+  background: #525252;
+  top: 3px;
+}
+.w-slider-nav.w-round>div {
+  width: 14px;
+  border-radius: 99px;
+}
+</style>
