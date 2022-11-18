@@ -1,0 +1,9 @@
+/* hide scrollbar but allow scrolling */
+.element-class {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  overflow-y: scroll; 
+}
+
+.element-class::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
