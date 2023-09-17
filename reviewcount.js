@@ -1,21 +1,16 @@
 <script>
-  function initializeReviewOverview(element) {
-    const cmsListSelector = element.getAttribute('zd-cms-list');
-    const ratingFieldSelector = element.getAttribute('zd-rating-field');
-    const averageFieldSelector = element.getAttribute('zd-average-field');
-    const totalFieldSelector = element.getAttribute('zd-total-field');
-
+  document.addEventListener('DOMContentLoaded', function () {
     // Function to count CMS items
-    function countCMSItems(collectionListSelector) {
-      const collectionList = document.querySelector(collectionListSelector);
+    function countCMSItems(collectionListClassName) {
+      const collectionList = document.querySelector(`.${collectionListClassName}`);
       const itemCount = collectionList.querySelectorAll('.w-dyn-item').length;
       return itemCount;
     }
 
     // Function to calculate the average rating
-    function calculateAverageRating(collectionListSelector, ratingSelector) {
-      const collectionList = document.querySelector(collectionListSelector);
-      const ratingElements = collectionList.querySelectorAll(ratingSelector);
+    function calculateAverageRating(collectionListClassName) {
+      const collectionList = document.querySelector(`.${collectionListClassName}`);
+      const ratingElements = collectionList.querySelectorAll('.review_rating');
       let totalRating = 0;
 
       ratingElements.forEach((ratingElement) => {
@@ -32,20 +27,21 @@
       }
     }
 
-    const totalElement = document.querySelector(totalFieldSelector);
-    const averageElement = document.querySelector(averageFieldSelector);
+    // Replace 'testimonial_content-right' with your actual CMS collection list class name
+    const collectionListClassName = 'review_list';
 
-    const itemCount = countCMSItems(cmsListSelector);
-    const averageRating = calculateAverageRating(cmsListSelector, ratingFieldSelector);
+    // Get the item count
+    const itemCount = countCMSItems(collectionListClassName);
 
-    totalElement.textContent = `Total Reviews: ${itemCount}`;
-    averageElement.textContent = `Average Rating: ${averageRating.toFixed(2)}`;
-  }
+    // Get the average rating
+    const averageRating = calculateAverageRating(collectionListClassName);
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const overviewElements = document.querySelectorAll('.review-overview');
-    overviewElements.forEach((element) => {
-      initializeReviewOverview(element);
-    });
+    // Update the element with the class name '.review-overview_total' with the item count
+    const totalElement = document.querySelector('.review_total');
+    totalElement.textContent = `${itemCount}`;
+
+    // Update the element with the class name '.review-overview_average' with the average rating
+    const averageElement = document.querySelector('.review_average');
+    averageElement.textContent = `${averageRating.toFixed(1)}`;
   });
 </script>
