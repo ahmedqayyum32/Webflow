@@ -1,25 +1,22 @@
 <script>
-// 🍉 when DOM has loaded
 document.addEventListener("DOMContentLoaded", () => {
-  const limit = 130, // number of character allowed before truncation trigger
-    maxCharacters = 130; // number of characher displayed after elipsis
+  const limit = 130; // Number of characters allowed before truncation trigger
+  const maxCharacters = 130; // Number of characters displayed after ellipsis
   truncateParagraphs(limit, maxCharacters);
 });
 
-// 🍆 helper function
 function countCharacters(target) {
-  const characters = target.textContent.split("");
-  return characters.length; // returns the amount of characters incl. spaces
+  // Use the length property directly for character count
+  return target.textContent.length;
 }
 
-// 🥬 truncate function
 function truncateParagraphs(limit, maxCharacters) {
-  const targets = document.getElementsByClassName("heading-style-h5 news-truncate");
-  Array.from(targets).forEach((target) => {
-    if (countCharacters(target) < limit) return; // skip truncation
-    const text = target.textContent,
-      elipsis = text.substring(0, maxCharacters);
-    target.textContent = `${elipsis}...`;
-  }); // end for each
+  const targets = document.querySelectorAll(".heading-style-h5.news-truncate");
+  targets.forEach((target) => {
+    if (countCharacters(target) <= limit) return; // Skip truncation if already within the limit
+    const text = target.textContent;
+    const truncatedText = text.slice(0, maxCharacters) + '...';
+    target.textContent = truncatedText;
+  });
 }
 </script>
