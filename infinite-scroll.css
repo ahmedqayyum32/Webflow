@@ -1,0 +1,31 @@
+  /* Define a keyframe animation named 'scroll' */
+  @keyframes scroll {
+    /* Start of the animation */
+    from {
+      transform: translateX(0);
+    }
+    /* End of the animation */
+    to {
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+
+  /* Apply the 'scroll' animation to elements with class 'scroll' */
+  .scroll {
+    animation: scroll 100s linear infinite;
+  }
+
+  /* Reverse the direction of the animation */
+  .reverse {
+    animation-direction: reverse;
+  }
+
+  /* Apply a hardware-accelerated 3D transformation to the specified element */
+  .image {
+    -webkit-transform: translateZ(0);
+  }
+
+  /* Pause the 'scroll' animation when hovering over an element with class 'wrapper' */
+  .wrapper:hover .scroll {
+    animation-play-state: paused;
+  }
